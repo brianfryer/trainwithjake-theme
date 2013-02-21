@@ -16,23 +16,12 @@ if (!function_exists('trainwithjake_load_styles_scripts')) {
             wp_deregister_script( 'jquery' );
             wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', null, null );
             wp_enqueue_script('jquery');
-            // TypeKit
-            wp_register_script('trainwithjake_typekit', '//use.typekit.net/bny7tcf.js', null, null );
-            wp_enqueue_script('trainwithjake_typekit');
+            // Google web fonts
+            wp_enqueue_style('trainwithjake_googlewebfonts', 'http://fonts.googleapis.com/css?family=Cabin:400,700,400italic,700italic', null, null, 'screen');
         }
     }
 }
 add_action( 'wp_enqueue_scripts', 'trainwithjake_load_styles_scripts' );
-
-// TypeKit
-if (!function_exists('typekit_inline')) {
-    function trainwithjake_typekit_inline() {
-        if ( wp_script_is( 'trainwithjake_typekit', 'done' ) ) { ?>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-        <?php }
-    }
-}
-add_action( 'wp_head', 'trainwithjake_typekit_inline' );
 
 
 /* =========================================================================== *
