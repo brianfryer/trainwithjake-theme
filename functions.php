@@ -12,16 +12,32 @@ if (!function_exists('trainwithjake_load_styles_scripts')) {
             // Modernizr
             wp_register_script('modernizr', get_template_directory_uri() . '/js/vendors/modernizr-2.6.2-respond-1.1.0.min.js', null, null );
             wp_enqueue_script('modernizr');
+            // HTML5Shiv
+            wp_deregister_script('html5shiv');
+            wp_enqueue_script('html5shiv', get_template_directory_uri() . '/js/vendors/html5shiv.js', false, '3.4');
             // jQuery
             wp_deregister_script( 'jquery' );
             wp_register_script('jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', null, null );
             wp_enqueue_script('jquery');
+            // TypeKit
+            wp_register_script('trainwithjake_typekit', '//use.typekit.net/dpo5vys.js', null, null );
+            wp_enqueue_script('trainwithjake_typekit');
             // Google web fonts
-            wp_enqueue_style('trainwithjake_googlewebfonts', 'http://fonts.googleapis.com/css?family=Cabin:400,700,400italic,700italic', null, null, 'screen');
+            //wp_enqueue_style('trainwithjake_googlewebfonts', 'http://fonts.googleapis.com/css?family=Cabin:400,700,400italic,700italic', null, null, 'all');
         }
     }
 }
 add_action( 'wp_enqueue_scripts', 'trainwithjake_load_styles_scripts' );
+
+// TypeKit
+if (!function_exists('typekit_inline')) {
+    function trainwithjake_typekit_inline() {
+        if ( wp_script_is( 'trainwithjake_typekit', 'done' ) ) { ?>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <?php }
+    }
+}
+add_action( 'wp_head', 'trainwithjake_typekit_inline' );
 
 
 /* =========================================================================== *
